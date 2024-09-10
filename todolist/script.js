@@ -34,14 +34,14 @@ function deleteTask(event) {
     const task = event.target.parentElement;
     taskList.removeChild(task);
 }
-function editTask(taskElement) {
-    let newTaskText = prompt("Edit the task:", taskElement.textContent);
+function editTask(event) {
+    let newTaskText = prompt("Edit the task:", event.textContent);
     
     if (newTaskText !== null && newTaskText.trim() !== "") {
-        taskElement.textContent = newTaskText.trim();
+        event.textContent = newTaskText.trim();
         
         // Re-add the event listener for further edits
-        taskElement.addEventListener('click', function() {
+        event.addEventListener('click', function() {
             editTask(taskElement);
         });
     }
