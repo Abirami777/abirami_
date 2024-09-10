@@ -17,6 +17,10 @@ function addTask() {
         deleteBtn.textContent = 'Delete';
         deleteBtn.addEventListener('click', deleteTask);
         li.appendChild(deleteBtn);
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+        editBtn.addEventListener('click',editTask);
+        li.appendChild(editBtn);
     }
 }
 
