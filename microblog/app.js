@@ -1,5 +1,14 @@
 // Load feed from localStorage when the page is loaded
-document.addEventListener('DOMContentLoaded', loadFeed);
+document.addEventListener('DOMContentLoaded', loadFeed);{
+    let likes=0;
+    const likeButton=document.getElementById('likeBtn');
+    const likeCount=document.getElementById('like-count');
+
+    likeButton.addEventListener('click',() => {
+        likes++;
+        likeCount.TextContent='Likes: ${likes}';
+    });
+}
 
 function createPost() {
     const content = document.getElementById('post-content').value;
@@ -35,5 +44,7 @@ function loadFeed() {
         const postDiv = document.createElement('div');
         postDiv.textContent = `${post.content} (Posted on ${post.timestamp})`;
         feed.appendChild(postDiv);
+        
     });
 }
+
