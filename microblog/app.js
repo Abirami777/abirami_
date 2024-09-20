@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', loadFeed);{
     const likeButton=document.getElementById('likeBtn');
     const likeCount=document.getElementById('likes-count');
 
-    likeButton.addEventListener('click',() => {
+    likeButton.addEventListener('click', function () => {
         likes++;
-        likeCount.TextContent='Likes: ${likes}';
+        likeCount.TextContent='Likee(${likes})';
     });
 }
 
