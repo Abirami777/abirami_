@@ -1,5 +1,6 @@
 // Load feed from localStorage when the page is loaded
-document.addEventListener('DOMContentLoaded', loadFeed);{
+document.addEventListener('DOMContentLoaded', function());{
+    loadFeed();
     let likes=0;
     const likeButton=document.getElementById('likeBtn');
     const likeCount=document.getElementById('likesCount');
