@@ -2,11 +2,11 @@
 document.addEventListener('DOMContentLoaded', loadFeed);{
     let likes=0;
     const likeButton=document.getElementById('likeBtn');
-    const likeCount=document.getElementById('likes-count');
+    const likeCount=document.getElementById('likesCount');
 
     likeButton.addEventListener('click', function () => {
         likes++;
-        likeCount.TextContent='Likee(${likes})';
+        likeCount.TextContent='Like(${likes})';
     });
 }
 
