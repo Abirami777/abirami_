@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Delivery App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Food Delivery App</h1>
+    </header>
+
+    <main>
+        <section id="menu">
+            <div class="dish">
+                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8ab016150109067.62f3bef9394a1.jpg" alt="Biriyani">
+                <h2>Biriyani</h2>
+                <p>$10</p>
+                <p>Taste the traditional flavour of biriyani with the natural spices </p>
+                <button onclick="addToCart('Biriyani', 10)">Add to Cart</button>
+            </div>
+
+            <div class="dish">
+                <img src="https://www.bing.com/images/search?view=detailV2&ccid=LDx01nvy&id=84BAA63EDE69EF53E35EE08ADE632C55D8959732&thid=OIP.LDx01nvywhRgm1h1SkLINQAAAA&mediaurl=https%3a%2f%2ffarm5.staticflickr.com%2f4551%2f38906976401_27bd27e344_o_d.jpg&exph=397&expw=474&q=fish+fry+images+hd&simid=608044718581971256&FORM=IRPRST&ck=3357436179FE46B368AB2D61A8915CBE&selectedIndex=1&itb=0" alt="FishFry">
+                <h2>FishFry</h2>
+                <p>$15</p>
+                <p>Spicy pizza topped with pepperoni and olives.</p>
+                <button onclick="addToCart('FishFry', 15)">Add to Cart</button>
+            </div>
+
+            <div class="dish">
+                <img src="https://uploads-ssl.webflow.com/5e755ce334e76c98ebaf26d1/5e850ba7862ca41c6a5f15bc_Tandoori-Chicken-1-p-800.jpeg" alt="Tandoori Chicken">
+                <h2>Tandoori Chicken</h2>
+                <p>$12</p>
+                <p>Spicy & smokey tandoori chicken</p>
+                <button onclick="addToCart('Tandoori Chicken', 12)">Add to Cart</button>
+            </div>
+        </section>
+
+        <section id="cart">
+            <h2>Cart</h2>
+            <ul id="cartItems"></ul>
+            <p>Total: $<span id="totalPrice">0</span></p>
+            <button onclick="checkout()">Checkout</button>
+        </section>
+
+        <div id="orderConfirmation" class="hidden">
+            <img src="order-placed.jpg" alt="Order Placed">
+            <h2>Your order has been placed successfully!</h2>
+            <button onclick="confirmOrder()">Confirm</button>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
