@@ -1,15 +1,9 @@
 // Load feed from localStorage when the page is loaded
-document.addEventListener('DOMContentLoaded', function();{
+document.addEventListener('DOMContentLoaded',()=>
+    {
     loadFeed();
-    let likes=0;
-    const likeButton=document.getElementById('likeBtn');
-    const likeCount=document.getElementById('likesCount');
-
-    likeButton.addEventListener('click', function () {
-        likes++;
-        likeCount.TextContent='Like(${likes})';
     });
-});
+    
 
 function createPost() {
     const content = document.getElementById('post-content').value;
@@ -47,5 +41,15 @@ function loadFeed() {
         feed.appendChild(postDiv);
         
     });
+const likeBtn=document.createElement('button');
+likeBtn.textContent=Like(${post.likes});
+likeBtn.classList.add('like-btn');
+likeBtn.onclick=function(){
+    posts[index].likes++;
+    localStorage.setItem('posts',JSON.stringify(posts));
+    loadfeed();
+};
+    postDiv.appendChild(likeBtn);
+    feed.appendChild(postDiv);
+};
 }
-
