@@ -1,9 +1,7 @@
 // Load feed from localStorage when the page is loaded
-document.addEventListener('DOMContentLoaded',()=>
-    {
+document.addEventListener('DOMContentLoaded', () => {
     loadFeed();
-    });
-    
+});
 
 function createPost() {
     const content = document.getElementById('post-content').value;
@@ -14,7 +12,8 @@ function createPost() {
 
     const post = {
         content: content,
-        timestamp: new Date().toLocaleString()
+        timestamp: new Date().toLocaleString(),
+        likes: 0 // Initialize likes
     };
 
     // Save the post in localStorage
@@ -35,21 +34,23 @@ function loadFeed() {
 
     const posts = JSON.parse(localStorage.getItem('posts')) || [];
 
-    posts.forEach(post => {
+    posts.forEach((post, index) => {
         const postDiv = document.createElement('div');
         postDiv.textContent = `${post.content} (Posted on ${post.timestamp})`;
+
+        const likeBtn = document.createElement('button');
+        likeBtn.textContent = `Like (${post.likes})`;
+        likeBtn.classList.add('like-btn');
+        likeBtn.onclick = function() {
+            // Increment the likes for the current post
+            post.likes++;
+            posts[index].likes = post.likes; // Update likes count in the array
+            localStorage.setItem('posts', JSON.stringify(posts));
+            loadFeed(); // Reload the feed to reflect the updated likes
+        };
+
+        postDiv.appendChild(likeBtn);
         feed.appendChild(postDiv);
-        
     });
-const likeBtn=document.createElement('button');
-likeBtn.textContent=Like(${post.likes});
-likeBtn.classList.add('like-btn');
-likeBtn.onclick=function(){
-    posts[index].likes++;
-    localStorage.setItem('posts',JSON.stringify(posts));
-    loadfeed();
-};
-    postDiv.appendChild(likeBtn);
-    feed.appendChild(postDiv);
-};
 }
+
