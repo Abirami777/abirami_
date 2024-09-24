@@ -83,7 +83,8 @@ function createPostElement(post, index) {
         }
     });
     postDiv.appendChild(toggleCommentsButton);
-  
+    commentsList.style.display = 'none';
+
 
     return postDiv;
 }
