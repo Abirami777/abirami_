@@ -56,6 +56,10 @@ function loadFeed() {
             posts[index].comment=post.comment;
             localStorage.setItem('posts',JSON.stringify(posts));
             loadFeed();
+        }
+        }
+
+    function createComment(){
     const commentsList = document.getElementById("comments-list");
     const commentInput = document.getElementById("comment-input");
     const submitCommentButton = document.getElementById("submit-comment");
