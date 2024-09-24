@@ -83,11 +83,4 @@ function loadFeed() {
     });
 }
 
-// Helper function to update a post in localStorage
-function updatePost(index, updatedPost) {
-    let posts = JSON.parse(localStorage.getItem('posts')) || [];
-    posts[index] = updatedPost;
-    localStorage.setItem('posts', JSON.stringify(posts));
-    loadFeed(); // Reload the feed to reflect changes
-}
 
