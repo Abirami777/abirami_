@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadFeed();
 });
 
+// Function to create a new post
 function createPost() {
     const content = document.getElementById('post-content').value;
     if (content.trim() === '') {
@@ -13,8 +14,8 @@ function createPost() {
     const post = {
         content: content,
         timestamp: new Date().toLocaleString(),
-        likes: 0 // Initialize likes
-        comment:0
+        likes: 0,
+        comments: [] // Initialize comments as an array
     };
 
     // Save the post in localStorage
@@ -29,6 +30,7 @@ function createPost() {
     loadFeed();
 }
 
+// Function to load and display the feed
 function loadFeed() {
     const feed = document.getElementById('feed');
     feed.innerHTML = '';
@@ -37,50 +39,55 @@ function loadFeed() {
 
     posts.forEach((post, index) => {
         const postDiv = document.createElement('div');
-        postDiv.textContent = `${post.content} (${post.timestamp})`;
+        postDiv.classList.add('post');
+        postDiv.innerHTML = `<p>${post.content} <small>(${post.timestamp})</small></p>`;
 
+        // Like button
         const likeBtn = document.createElement('button');
         likeBtn.textContent = `Like (${post.likes})`;
         likeBtn.classList.add('like-btn');
         likeBtn.onclick = function() {
-            // Increment the likes for the current post
             post.likes++;
-            posts[index].likes = post.likes; // Update likes count in the array
-            localStorage.setItem('posts', JSON.stringify(posts));
-            loadFeed(); // Reload the feed to reflect the updated likes
-        const commentBtn = document.createElement('button');
-        commentBtn.textContent = 'Comment(${post.comment})';
-        commentBtn.classList.add('comment-btn');
-        commentBtn.onclick= function(){
-            post.comment++;
-            posts[index].comment=post.comment;
-            localStorage.setItem('posts',JSON.stringify(posts));
-            loadFeed();
-        }
-        }
+            updatePost(index, post);
+        };
+        postDiv.appendChild(likeBtn);
 
-    function createComment(){
-    const commentsList = document.getElementById("comments-list");
-    const commentInput = document.getElementById("comment-input");
-    const submitCommentButton = document.getElementById("submit-comment");
+        // Comment section
+        const commentsList = document.createElement('div');
+        commentsList.classList.add('comments-list');
+        post.comments.forEach(comment => {
+            const commentDiv = document.createElement('div');
+            commentDiv.classList.add('comment');
+            commentDiv.textContent = comment;
+            commentsList.appendChild(commentDiv);
+        });
 
-    submitCommentButton.addEventListener("click", () => {
-        const commentText = commentInput.value.trim();
-        if (commentText) {
-            const commentElement = document.createElement("div");
-            commentElement.classList.add("comment");
-            commentElement.textContent = commentText;
-            commentsList.appendChild(commentElement);
-            commentInput.value = ""; // Clear the input
-        }
-    }
-            
+        const commentInput = document.createElement('input');
+        commentInput.placeholder = 'Write a comment...';
+        const submitCommentButton = document.createElement('button');
+        submitCommentButton.textContent = 'Submit Comment';
+
+        submitCommentButton.onclick = function() {
+            const commentText = commentInput.value.trim();
+            if (commentText) {
+                post.comments.push(commentText);
+                updatePost(index, post);
+                loadFeed(); // Refresh feed to show the new comment
+            }
         };
 
-        postDiv.appendChild(likeBtn);
-        feed.appendChild(postDiv);
-        postDiv.appendChild(commentBtn);
+        postDiv.appendChild(commentsList);
+        postDiv.appendChild(commentInput);
+        postDiv.appendChild(submitCommentButton);
         feed.appendChild(postDiv);
     });
+}
+
+// Helper function to update a post in localStorage
+function updatePost(index, updatedPost) {
+    let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    posts[index] = updatedPost;
+    localStorage.setItem('posts', JSON.stringify(posts));
+    loadFeed(); // Reload the feed to reflect changes
 }
 
