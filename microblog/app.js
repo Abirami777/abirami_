@@ -83,9 +83,7 @@ function createPostElement(post, index) {
         }
     });
     postDiv.appendChild(toggleCommentsButton);
-    
-    // Initially hide the comments section
-    commentsList.style.display = 'none';
+  
 
     return postDiv;
 }
