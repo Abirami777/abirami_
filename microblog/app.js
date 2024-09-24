@@ -14,6 +14,7 @@ function createPost() {
         content: content,
         timestamp: new Date().toLocaleString(),
         likes: 0 // Initialize likes
+        comment:0
     };
 
     // Save the post in localStorage
@@ -47,6 +48,15 @@ function loadFeed() {
             posts[index].likes = post.likes; // Update likes count in the array
             localStorage.setItem('posts', JSON.stringify(posts));
             loadFeed(); // Reload the feed to reflect the updated likes
+        const commentBtn = document.createElement('button');
+        commentBtn.textContent = 'Comment(${post.comment})';
+        commentBtn.classList.add('comment-btn');
+        commentBtn.onclick= function(){
+            post.comment++;
+            posts[index].comment=post.comment;
+            localStorage.setItem('posts',JSON.stringify(posts));
+            loadFeed();
+            
         };
 
         postDiv.appendChild(likeBtn);
