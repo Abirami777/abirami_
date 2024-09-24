@@ -12,6 +12,7 @@ header {
     padding: 20px;
 }
 
+
 main {
     display: flex;
     justify-content: space-between;
@@ -35,7 +36,7 @@ main {
     border-radius: 3px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    flex-basis:30%;
+    flex-basis:25%;
     
 }
 
@@ -46,6 +47,7 @@ main {
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
 
 button {
     background-color: #ff4d4d;
