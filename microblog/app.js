@@ -37,7 +37,7 @@ function loadFeed() {
 
     posts.forEach((post, index) => {
         const postDiv = document.createElement('div');
-        postDiv.textContent = `${post.content} (Posted on ${post.timestamp})`;
+        postDiv.textContent = `${post.content} (${post.timestamp})`;
 
         const likeBtn = document.createElement('button');
         likeBtn.textContent = `Like (${post.likes})`;
@@ -56,6 +56,19 @@ function loadFeed() {
             posts[index].comment=post.comment;
             localStorage.setItem('posts',JSON.stringify(posts));
             loadFeed();
+    const commentsList = document.getElementById("comments-list");
+    const commentInput = document.getElementById("comment-input");
+    const submitCommentButton = document.getElementById("submit-comment");
+
+    submitCommentButton.addEventListener("click", () => {
+        const commentText = commentInput.value.trim();
+        if (commentText) {
+            const commentElement = document.createElement("div");
+            commentElement.classList.add("comment");
+            commentElement.textContent = commentText;
+            commentsList.appendChild(commentElement);
+            commentInput.value = ""; // Clear the input
+        }
             
         };
 
