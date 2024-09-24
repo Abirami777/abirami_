@@ -69,10 +69,13 @@ function loadFeed() {
             commentsList.appendChild(commentElement);
             commentInput.value = ""; // Clear the input
         }
+    }
             
         };
 
         postDiv.appendChild(likeBtn);
+        feed.appendChild(postDiv);
+        postDiv.appendChild(commentBtn);
         feed.appendChild(postDiv);
     });
 }
