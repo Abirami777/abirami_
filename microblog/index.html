@@ -3,21 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Microblogging App</title>
-    <link rel="stylesheet" href="styles.css">
-    <h2>MICROBLOG</h2> 
+    <title>Microblog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        textarea {
+            width: 100%;
+            height: 80px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .post {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .post p {
+            margin: 5px 0;
+        }
+        .like-button, .comment-button {
+            cursor: pointer;
+            color: #007BFF;
+        }
+        .like-button:hover, .comment-button:hover {
+            text-decoration: underline;
+        }
+        .comments {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .comment-form input {
+            width: 70%;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .comment-form button {
+            padding: 5px 10px;
+        }
+    </style>
 </head>
 <body>
-    <h3>Blogs_from_Abiii   &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  <button type="submit">Follow</button></h3>
-    <div id="post-section">
-        <h2>Create a Post</h2>
-        <textarea id="post-content" placeholder="Share something here"></textarea><br>
-        <button onclick="createPost()">Post</button>
+
+<div class="container">
+    <h1>Welcome to Microblog</h1>
+    
+    <!-- Form to create a new post -->
+    <div>
+        <textarea id="newPostContent" placeholder="What's on your mind?"></textarea>
+        <button id="postButton">Post</button>
     </div>
-    <div id="feed-section">
-        <h2>Your Feed</h2>
-        <div id="feed"></div>
-     </div>
-    <script src="app2.js"></script>
+
+    <hr>
+
+    <!-- Display list of posts -->
+    <div id="postsContainer"></div>
+
+</div>
+
+<script>
+    // Sample data to simulate existing posts
+    let posts = [
+        {id: 1, author: 'Alice', content: 'This is my first post!', likes: 2, comments: [{author: 'Bob', content: 'Nice post!'}, {author: 'Charlie', content: 'I agree!'}]},
+        {id: 2, author: 'Bob', content: 'Hello world!', likes: 1, comments: [{author: 'Alice', content: 'Welcome!'}]}
+    ];
+
+    // Function to render posts
+    function renderPosts() {
+        let postsContainer = document.getElementById('postsContainer');
+        postsContainer.innerHTML = '';  // Clear the container before rendering
+
+        posts.forEach(post => {
+            let postDiv = document.createElement('div');
+            postDiv.classList.add('post');
+            postDiv.setAttribute('id', `post-${post.id}`);
+
+            postDiv.innerHTML = `
+                <p><strong>${post.author}:</strong> ${post.content}</p>
+                <p><span class="like-button" onclick="likePost(${post.id})">Like</span> (<span id="like-count-${post.id}">${post.likes}</span>)</p>
+                <div class="comment-form">
+                    <input type="text" placeholder="Add a comment..." id="comment-input-${post.id}">
+                    <button onclick="addComment(${post.id})">Comment</button>
+                </div>
+                <ul class="comments" id="comments-${post.id}">
+                    ${post.comments.map(comment => `<li><strong>${comment.author}:</strong> ${comment.content}</li>`).join('')}
+                </ul>
+            `;
+
+            postsContainer.appendChild(postDiv);
+        });
+    }
+
+    // Function to add a new post
+    function addPost() {
+        let postContent = document.getElementById('newPostContent').value;
+        if (postContent.trim()) {
+            let newPost = {
+                id: posts.length + 1,
+                author: 'You',
+                content: postContent,
+                likes: 0,
+                comments: []
+            };
+            posts.unshift(newPost);  // Add the new post at the beginning
+            renderPosts();  // Re-render the posts
+            document.getElementById('newPostContent').value = '';  // Clear the input
+        } else {
+            alert('Please write something to post!');
+        }
+    }
+
+    // Function to like a post
+    function likePost(postId) {
+        let post = posts.find(p => p.id === postId);
+        if (post) {
+            post.likes += 1;
+            document.getElementById(`like-count-${postId}`).textContent = post.likes;
+        }
+    }
+
+    // Function to add a comment to a post
+    function addComment(postId) {
+        let commentInput = document.getElementById(`comment-input-${postId}`);
+        let commentContent = commentInput.value.trim();
+        if (commentContent) {
+            let post = posts.find(p => p.id === postId);
+            if (post) {
+                post.comments.push({author: 'You', content: commentContent});
+                renderPosts();  // Re-render the posts to display the new comment
+                commentInput.value = '';  // Clear the input
+            }
+        } else {
+            alert('Please write a comment!');
+        }
+    }
+
+    // Attach event listener to the Post button
+    document.getElementById('postButton').addEventListener('click', addPost);
+
+    // Initial rendering of posts
+    renderPosts();
+</script>
+
 </body>
 </html>
