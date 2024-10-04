@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -104,13 +104,13 @@
 </div>
 
 <script>
-    // Sample data to simulate existing posts
-    let posts = [
-        {id: 1, author: 'Alice', content: 'This is my first post!', likes: 2, dislikes: 0, comments: [{author: 'Bob', content: 'Nice post!'}, {author: 'Charlie', content: 'I agree!'}]},
-        {id: 2, author: 'Bob', content: 'Hello world!', likes: 1, dislikes: 0, comments: [{author: 'Alice', content: 'Welcome!'}]}
-    ];
-
+    let posts = JSON.parse(localStorage.getItem('posts')) || [];  // Load posts from Local Storage, or use an empty array
     let currentUser = '';
+
+    // Function to save posts to Local Storage
+    function savePosts() {
+        localStorage.setItem('posts', JSON.stringify(posts));
+    }
 
     // Function to render posts
     function renderPosts() {
@@ -157,6 +157,7 @@
                 comments: []
             };
             posts.unshift(newPost);  // Add the new post at the beginning
+            savePosts();  // Save posts to Local Storage
             renderPosts();  // Re-render the posts
             document.getElementById('newPostContent').value = '';  // Clear the input
         } else {
@@ -170,6 +171,7 @@
         if (post) {
             post.likes += 1;
             document.getElementById(`like-count-${postId}`).textContent = post.likes;
+            savePosts();  // Save updated posts to Local Storage
         }
     }
 
@@ -179,6 +181,7 @@
         if (post) {
             post.dislikes += 1;
             document.getElementById(`dislike-count-${postId}`).textContent = post.dislikes;
+            savePosts();  // Save updated posts to Local Storage
         }
     }
 
@@ -200,6 +203,7 @@
             let post = posts.find(p => p.id === postId);
             if (post) {
                 post.comments.push({author: currentUser, content: commentContent});
+                savePosts();  // Save updated posts to Local Storage
                 renderPosts();  // Re-render the posts to display the new comment
                 commentInput.value = '';  // Clear the input
             }
