@@ -20,11 +20,11 @@ function renderPosts() {
             <p><strong>${post.author}:</strong> ${post.content}</p>
             <p><small>Posted on: ${post.timestamp}</small></p>
             <p>
-                <span class="like-button" onclick="likePost(${post.id})">Like</span> (<span id="like-count-${post.id}">${post.likes}</span>)
-                <span class="dislike-button" onclick="dislikePost(${post.id})">Dislike</span> (<span id="dislike-count-${post.id}">${post.dislikes}</span>)
-            </p>
-            <p>
-                <span class="comment-button" onclick="toggleComments(${post.id})">Comments</span> (<span id="comment-count-${post.id}">${post.comments.length}</span>)
+        
+                <span class="like-button" onclick="likePost(${post.id})"> <i class="fa fa-thumbs-up"></i></span> (<span id="like-count-${post.id}">${post.likes}</span>)
+                 
+                <span class="dislike-button" onclick="dislikePost(${post.id})"> <i class="fa fa-thumbs-down"></i></span> (<span id="dislike-count-${post.id}">${post.dislikes}</span>) </p>
+<p><span class="comment-button" onclick="toggleComments(${post.id})"> <i class="fa fa-comment"></i></span> (<span id="comment-count-${post.id}">${post.comments.length}</span>)
             </p>
             <div class="comment-form">
                 <input type="text" placeholder="Add a comment..." id="comment-input-${post.id}">
