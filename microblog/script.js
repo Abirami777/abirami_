@@ -33,6 +33,9 @@ function renderPosts() {
             <ul class="comments" id="comments-${post.id}">
                 ${post.comments.map(comment => `<li><strong>${comment.author}:</strong> ${comment.content}</li>`).join('')}
             </ul>
+        
+        
+           <button class="delete-button" onclick="deletePost(${post.id})">Delete</button>  <!-- Delete button -->
         `;
 
         postsContainer.appendChild(postDiv);
@@ -124,7 +127,21 @@ function login() {
         alert('Please enter both username and password.');
     }
 }
-
+// Function to delete a post
+function deletePost(postId) {
+    // Confirm before deleting
+    const confirmation = confirm("Are you sure you want to delete this post?");
+    if (confirmation) {
+        // Find the index of the post to delete
+        const postIndex = posts.findIndex(p => p.id === postId);
+        
+        if (postIndex !== -1) {
+            posts.splice(postIndex, 1);  // Remove the post from the array
+            savePosts();  // Save the updated posts to Local Storage
+            renderPosts();  // Re-render the posts
+        }
+    }
+}
 // Attach event listener to the Login button
 document.getElementById('loginButton').addEventListener('click', login);
 
