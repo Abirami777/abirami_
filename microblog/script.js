@@ -1,132 +1,135 @@
-// Load feed from localStorage when the page is loaded
-document.addEventListener('DOMContentLoaded', loadFeed);
+let posts = JSON.parse(localStorage.getItem('posts')) || [];  // Load posts from Local Storage, or use an empty array
+let currentUser = '';
 
-// Function to create a new post
-function createPost() {
-    const content = document.getElementById('post-content').value.trim();
-    if (!content) {
-        alert("Post cannot be empty!");
-        return;
-    }
-
-    const post = {
-        content,
-        timestamp: new Date().toLocaleString(),
-        likes: 0,
-        comments: []
-    };
-
-    // Save the post in localStorage
-    const posts = getPosts();
-    posts.push(post);
-    savePosts(posts);
-
-    // Clear the textarea
-    document.getElementById('post-content').value = '';
-
-    // Reload the feed
-    loadFeed();
-}
-
-// Function to load and display the feed
-function loadFeed() {
-    const feed = document.getElementById('feed');
-    feed.innerHTML = '';
-
-    const posts = getPosts();
-
-    posts.forEach((post, index) => {
-        const postDiv = createPostElement(post, index);
-        feed.appendChild(postDiv);
-    });
-}
-
-// Helper function to create post element
-function createPostElement(post, index) {
-    const postDiv = document.createElement('div');
-    postDiv.classList.add('post');
-    postDiv.innerHTML = `<p>${post.content} <small>(${post.timestamp})</small></p>`;
-
-    const likeBtn = createButton(`Like (${post.likes})`, () => {
-        post.likes++;
-        updatePost(index, post);
-    });
-    postDiv.appendChild(likeBtn);
-
-    const commentsList = createCommentsList(post.comments);
-    postDiv.appendChild(commentsList);
-
-    const commentInput = document.createElement('input');
-    commentInput.placeholder = 'Write a comment...';
-
-    const submitCommentButton = createButton('Submit Comment', () => {
-        const commentText = commentInput.value.trim();
-        if (commentText) {
-            post.comments.push(commentText);
-            updatePost(index, post);
-            loadFeed(); // Refresh feed to show the new comment
-        }
-    });
-
-    postDiv.appendChild(commentInput);
-    postDiv.appendChild(submitCommentButton);
-
-    // Show/hide comments section
-    const toggleCommentsButton = createButton('Show Comments', () => {
-        const commentsSection = postDiv.querySelector('.comments-list');
-        if (commentsSection.style.display === 'none' || !commentsSection.style.display) {
-            commentsSection.style.display = 'block';
-            toggleCommentsButton.textContent = 'Hide Comments';
-        } else {
-            commentsSection.style.display = 'none';
-            toggleCommentsButton.textContent = 'Show Comments';
-        }
-    });
-    postDiv.appendChild(toggleCommentsButton);
-    
-    // Initially hide the comments section
-    commentsList.style.display = 'none';
-
-    return postDiv;
-}
-
-// Helper function to create comments list
-function createCommentsList(comments) {
-    const commentsList = document.createElement('div');
-    commentsList.classList.add('comments-list');
-
-    comments.forEach(comment => {
-        const commentDiv = document.createElement('div');
-        commentDiv.classList.add('comment');
-        commentDiv.textContent = comment;
-        commentsList.appendChild(commentDiv);
-    });
-
-    return commentsList;
-}
-
-// Helper function to create a button
-function createButton(text, onClick) {
-    const button = document.createElement('button');
-    button.textContent = text;
-    button.onclick = onClick;
-    return button;
-}
-
-// Helper function to get posts from localStorage
-function getPosts() {
-    return JSON.parse(localStorage.getItem('posts')) || [];
-}
-
-// Helper function to save posts to localStorage
-function savePosts(posts) {
+// Function to save posts to Local Storage
+function savePosts() {
     localStorage.setItem('posts', JSON.stringify(posts));
 }
 
-// Helper function to update a post in localStorage
-function updatePost(index, updatedPost) {
-    const posts = getPosts();
-    posts[index] = updatedPost;
-    savePosts(posts);
-    loadFeed(); // Reload the feed to reflect changes
+// Function to render posts
+function renderPosts() {
+    let postsContainer = document.getElementById('postsContainer');
+    postsContainer.innerHTML = '';  // Clear the container before rendering
+
+    posts.forEach(post => {
+        let postDiv = document.createElement('div');
+        postDiv.classList.add('post');
+        postDiv.setAttribute('id', `post-${post.id}`);
+
+        postDiv.innerHTML = `
+            <p><strong>${post.author}:</strong> ${post.content}</p>
+            <p><small>Posted on: ${post.timestamp}</small></p>
+            <p>
+                <span class="like-button" onclick="likePost(${post.id})">Like</span> (<span id="like-count-${post.id}">${post.likes}</span>)
+                <span class="dislike-button" onclick="dislikePost(${post.id})">Dislike</span> (<span id="dislike-count-${post.id}">${post.dislikes}</span>)
+            </p>
+            <p>
+                <span class="comment-button" onclick="toggleComments(${post.id})">Comments</span> (<span id="comment-count-${post.id}">${post.comments.length}</span>)
+            </p>
+            <div class="comment-form">
+                <input type="text" placeholder="Add a comment..." id="comment-input-${post.id}">
+                <button onclick="addComment(${post.id})">Comment</button>
+            </div>
+            <ul class="comments" id="comments-${post.id}">
+                ${post.comments.map(comment => `<li><strong>${comment.author}:</strong> ${comment.content}</li>`).join('')}
+            </ul>
+        `;
+
+        postsContainer.appendChild(postDiv);
+    });
 }
+
+// Function to add a new post
+function addPost() {
+    let postContent = document.getElementById('newPostContent').value;
+    if (postContent.trim()) {
+        let newPost = {
+            id: posts.length + 1,
+            author: currentUser,
+            content: postContent,
+            likes: 0,
+            dislikes: 0,
+            comments: [],
+            timestamp: new Date().toLocaleString()  // Add timestamp here
+        };
+        posts.unshift(newPost);  // Add the new post at the beginning
+        savePosts();  // Save posts to Local Storage
+        renderPosts();  // Re-render the posts
+        document.getElementById('newPostContent').value = '';  // Clear the input
+    } else {
+        alert('Please write something to post!');
+    }
+}
+
+// Function to like a post
+function likePost(postId) {
+    let post = posts.find(p => p.id === postId);
+    if (post) {
+        post.likes += 1;
+        document.getElementById(`like-count-${postId}`).textContent = post.likes;
+        savePosts();  // Save updated posts to Local Storage
+    }
+}
+
+// Function to dislike a post
+function dislikePost(postId) {
+    let post = posts.find(p => p.id === postId);
+    if (post) {
+        post.dislikes += 1;
+        document.getElementById(`dislike-count-${postId}`).textContent = post.dislikes;
+        savePosts();  // Save updated posts to Local Storage
+    }
+}
+
+// Function to toggle the visibility of comments
+function toggleComments(postId) {
+    let commentSection = document.getElementById(`comments-${postId}`);
+    if (commentSection.style.display === 'none' || commentSection.style.display === '') {
+        commentSection.style.display = 'block';
+    } else {
+        commentSection.style.display = 'none';
+    }
+}
+
+// Function to add a comment to a post
+function addComment(postId) {
+    let commentInput = document.getElementById(`comment-input-${postId}`);
+    let commentContent = commentInput.value.trim();
+    if (commentContent) {
+        let post = posts.find(p => p.id === postId);
+        if (post) {
+            post.comments.push({author: currentUser, content: commentContent});
+            savePosts();  // Save updated posts to Local Storage
+            renderPosts();  // Re-render the posts to display the new comment
+            commentInput.value = '';  // Clear the input
+        }
+    } else {
+        alert('Please write a comment!');
+    }
+}
+
+// Function to handle user login
+function login() {
+    let username = document.getElementById('username').value.trim();
+    let password = document.getElementById('password').value.trim();
+
+    if (username && password) {
+        currentUser = username;
+        document.getElementById('loginMessage').textContent = `Logged in as ${username}`;
+        document.getElementById('postSection').style.display = 'block';
+        document.getElementById('username').style.display = 'none';
+        document.getElementById('password').style.display = 'none';
+        document.getElementById('loginButton').style.display = 'none';
+    } else {
+        alert('Please enter both username and password.');
+    }
+}
+
+// Attach event listener to the Login button
+document.getElementById('loginButton').addEventListener('click', login);
+
+// Attach event listener to the Post button
+document.getElementById('postButton').addEventListener('click', addPost);
+
+// Initial rendering of posts
+renderPosts();
