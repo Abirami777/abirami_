@@ -68,4 +68,14 @@
             margin: 5px;
             width: 200px;
         }
-    
+        .delete-button {
+    padding: 5px 10px;
+    background-color: #FF4136;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.delete-button:hover {
+    background-color: #C0392B;
+}
