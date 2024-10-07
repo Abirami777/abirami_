@@ -39,7 +39,15 @@
         .post p {
             margin: 5px 0;
         }
-        .like-button, .dislike-button, .comment-button {
+        .like-button{
+           cursor: pointer;
+            color: #008000;
+        }
+        .dislike-button{
+            cursor: pointer;
+            color: #FF6347;
+        }
+       .comment-button {
             cursor: pointer;
             color: #007BFF;
         }
