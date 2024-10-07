@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Your Order</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Place Your Order</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="order.html">Place Order</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="order-form">
+            <h2>Delivery Information</h2>
+            <form id="order-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="contact">Contact Number:</label>
+                <input type="tel" id="contact" name="contact" required>
+
+                <label for="address">Delivery Address:</label>
+                <textarea id="address" name="address" required></textarea>
+
+                <label for="payment">Payment Method:</label>
+                <select id="payment" name="payment" required>
+                    <option value="credit">Credit Card</option>
+                    <option value="debit">Debit Card</option>
+                    <option value="cash">Cash on Delivery</option>
+                </select>
+
+                <p>Total Bill: $<span id="total-bill">0.00</span></p>
+
+                <button type="submit">Place Order</button>
+            </form>
+
+            <p id="confirmation-message" class="hidden">Thank you! Your order has been placed.</p>
+        </section>
+    </main>
+
+    <script>
+        // Fetch cart data and calculate total
+        const totalBill = localStorage.getItem('totalPrice') || 0;
+        document.getElementById('total-bill').textContent = totalBill;
+
+        // Handle order form submission
+        const orderForm = document.getElementById('order-form');
+        orderForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            // Show confirmation message
+            document.getElementById('confirmation-message').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
