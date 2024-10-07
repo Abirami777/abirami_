@@ -67,8 +67,15 @@ function addPost() {
         savePosts();  // Save posts to Local Storage
         renderPosts();  // Re-render the posts
         document.getElementById('newPostContent').value = '';  // Clear the input
+            fileInput.value = '';  // Clear the file input
+        };
+        reader.readAsDataURL(file);  // Read the file
     } else {
-        alert('Please write something to post!');
+        posts.unshift(newPost);  // Add the new post at the beginning if no file
+        savePosts();  // Save posts to Local Storage
+        renderPosts();  // Re-render the posts
+        document.getElementById('newPostContent').value = '';  // Clear the input
+        fileInput.value = '';  // Clear the file input
     }
 }
 
