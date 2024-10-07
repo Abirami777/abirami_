@@ -45,16 +45,24 @@ function renderPosts() {
 // Function to add a new post
 function addPost() {
     let postContent = document.getElementById('newPostContent').value;
-    if (postContent.trim()) {
-        let newPost = {
-            id: posts.length + 1,
-            author: currentUser,
-            content: postContent,
-            likes: 0,
-            dislikes: 0,
-            comments: [],
-            timestamp: new Date().toLocaleString()  // Add timestamp here
-        };
+    let fileInput = document.getElementById('fileInput');
+    let file = fileInput.files[0];
+    let newPost = {
+        id: posts.length + 1,
+        author: currentUser,
+        content: postContent,
+        likes: 0,
+        dislikes: 0,
+        comments: [],
+        timestamp: new Date().toLocaleString(),
+        image: ''
+    };
+
+    // If there's a file, read it as a data URL
+    if (file) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            newPost.image = e.target.result;  // Store the base64 image data
         posts.unshift(newPost);  // Add the new post at the beginning
         savePosts();  // Save posts to Local Storage
         renderPosts();  // Re-render the posts
