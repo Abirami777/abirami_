@@ -29,9 +29,10 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
     });
 });
 
-// Function to add items to cart
+// Add items to the cart and save to localStorage
 function addToCart(food) {
     cartItems.push(food);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));  // Save the cart items in local storage
     updateCartUI();
     calculateTotal();
 }
