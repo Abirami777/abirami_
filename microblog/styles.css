@@ -53,6 +53,7 @@
         }
         .like-button:hover, .dislike-button:hover, .comment-button:hover {
             text-decoration: underline;
+            color: #008000;
         }
         .comments {
             margin-top: 10px;
