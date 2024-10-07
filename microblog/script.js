@@ -18,13 +18,14 @@ function renderPosts() {
 
         postDiv.innerHTML = `
             <p><strong>${post.author}:</strong> ${post.content}</p>
+            ${post.image ? `<img src="${post.image}" alt="Post Image" style="max-width: 100%; height: auto;" />` : ''}
             <p><small>Posted on: ${post.timestamp}</small></p>
             <p>
-        
                 <span class="like-button" onclick="likePost(${post.id})"> <i class="fa fa-thumbs-up"></i></span> (<span id="like-count-${post.id}">${post.likes}</span>)
-                 
-                <span class="dislike-button" onclick="dislikePost(${post.id})"> <i class="fa fa-thumbs-down"></i></span> (<span id="dislike-count-${post.id}">${post.dislikes}</span>) </p>
-<p><span class="comment-button" onclick="toggleComments(${post.id})"> <i class="fa fa-comment"></i></span> (<span id="comment-count-${post.id}">${post.comments.length}</span>)
+                <span class="dislike-button" onclick="dislikePost(${post.id})"> <i class="fa fa-thumbs-down"></i></span> (<span id="dislike-count-${post.id}">${post.dislikes}</span>)
+            </p>
+            <p>
+                <span class="comment-button" onclick="toggleComments(${post.id})"> <i class="fa fa-comment"></i></span> (<span id="comment-count-${post.id}">${post.comments.length}</span>)
             </p>
             <div class="comment-form">
                 <input type="text" placeholder="Add a comment..." id="comment-input-${post.id}">
@@ -33,9 +34,7 @@ function renderPosts() {
             <ul class="comments" id="comments-${post.id}">
                 ${post.comments.map(comment => `<li><strong>${comment.author}:</strong> ${comment.content}</li>`).join('')}
             </ul>
-        
-        
-           <button class="delete-button" onclick="deletePost(${post.id})">Delete</button>  <!-- Delete button -->
+            <button class="delete-button" onclick="deletePost(${post.id})">Delete</button>  <!-- Delete button -->
         `;
 
         postsContainer.appendChild(postDiv);
@@ -47,6 +46,12 @@ function addPost() {
     let postContent = document.getElementById('newPostContent').value;
     let fileInput = document.getElementById('fileInput');
     let file = fileInput.files[0];
+
+    if (postContent.trim() === '' && !file) {
+        alert("Please enter content or upload an image!");
+        return;
+    }
+
     let newPost = {
         id: posts.length + 1,
         author: currentUser,
@@ -63,10 +68,10 @@ function addPost() {
         let reader = new FileReader();
         reader.onload = function (e) {
             newPost.image = e.target.result;  // Store the base64 image data
-        posts.unshift(newPost);  // Add the new post at the beginning
-        savePosts();  // Save posts to Local Storage
-        renderPosts();  // Re-render the posts
-        document.getElementById('newPostContent').value = '';  // Clear the input
+            posts.unshift(newPost);  // Add the new post at the beginning
+            savePosts();  // Save posts to Local Storage
+            renderPosts();  // Re-render the posts
+            document.getElementById('newPostContent').value = '';  // Clear the input
             fileInput.value = '';  // Clear the file input
         };
         reader.readAsDataURL(file);  // Read the file
@@ -142,6 +147,7 @@ function login() {
         alert('Please enter both username and password.');
     }
 }
+
 // Function to delete a post
 function deletePost(postId) {
     // Confirm before deleting
@@ -157,6 +163,7 @@ function deletePost(postId) {
         }
     }
 }
+
 // Attach event listener to the Login button
 document.getElementById('loginButton').addEventListener('click', login);
 
