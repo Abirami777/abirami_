@@ -3,56 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Delivery App</title>
+    <title>Food Delivery</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>Food Delivery App</h1>
+        <h1>Food Delivery Service</h1>
+        <nav>
+             <a href="index.html">Home</a>
+            <a href="cart.html">Cart</a>
+            <a href="order.html">Place Order</a>
+        </nav>
     </header>
 
+    <!-- Main Content -->
     <main>
-        <section id="menu">
-            <div class="dish">
-                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/8ab016150109067.62f3bef9394a1.jpg" alt="Biriyani">
-                <h2>Biriyani</h2>
-                <p>₹299</p>
-                <p>Taste the traditional flavour of biriyani with the natural spices </p>
-                <button onclick="addToCart('Biriyani', 299)">Add to Cart</button>
-            </div>
+        <section class="restaurants">
+            <h2>Available Restaurants</h2>
+            <div class="restaurant-list">
+                <!-- Restaurant Items -->
+                <div class="restaurant-container">
+                    <h3 class="restaurant-name">Pizza Palace</h3>
+                    <p>Location: 123 Main St, City</p>
+                    <p>Cuisine: Italian, Pizza</p>
+                    <p>Delivery Time: 30-40 mins</p>
+                    <button class="view-foods">View Menu</button>
+                    <div class="food-list hidden">
+                        <div class="food-item">
+                            <img src="https://via.placeholder.com/100" alt="Margherita Pizza">
+                            <div class="food-details">
+                                <h4>Margherita Pizza</h4>
+                                <p>Price: $12.00</p>
+                                <p>Orders: <span class="order-count" data-food-id="1">0</span></p>
+                                <p>Rating: <span class="rating" data-food-id="1">4.5</span> ★</p>
+                                <button class="add-to-cart" data-food-id="1">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="dish">
-                <img src="https://th.bing.com/th/id/OIP.VdLiC1G5md7PLDXb2mlXSgHaLG?w=132&h=198&c=7&r=0&o=5&dpr=1.2&pid=1.7" alt="FishFry">
-                <h2>FishFry</h2>
-                <p>₹259</p>
-                <p>Fresh fish  fried  with authentic  homemade  masala</p>
-                <button onclick="addToCart('FishFry', 259)">Add to Cart</button>
-            </div>
+                <div class="restaurant-container">
+                    <h3 class="restaurant-name">Sushi World</h3>
+                    <p>Location: 456 Sushi Ave, City</p>
+                    <p>Cuisine: Japanese, Sushi</p>
+                    <p>Delivery Time: 25-35 mins</p>
+                    <button class="view-foods">View Menu</button>
+                    <div class="food-list hidden">
+                        <div class="food-item">
+                            <img src="https://via.placeholder.com/100" alt="Salmon Sushi">
+                            <div class="food-details">
+                                <h4>Salmon Sushi</h4>
+                                <p>Price: $10.00</p>
+                                <p>Orders: <span class="order-count" data-food-id="3">0</span></p>
+                                <p>Rating: <span class="rating" data-food-id="3">4.7</span> ★</p>
+                                <button class="add-to-cart" data-food-id="3">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="dish">
-                <img src="https://uploads-ssl.webflow.com/5e755ce334e76c98ebaf26d1/5e850ba7862ca41c6a5f15bc_Tandoori-Chicken-1-p-800.jpeg" alt="Tandoori Chicken">
-                <h2>Tandoori Chicken</h2>
-                <p>₹399</p>
-                <p>Spicy & smokey tandoori chicken</p>
-                <button onclick="addToCart('Tandoori Chicken', 399)">Add to Cart</button>
+                <div class="restaurant-container">
+                    <h3 class="restaurant-name">Burger Town</h3>
+                    <p>Location: 789 Burger Blvd, City</p>
+                    <p>Cuisine: American, Burgers</p>
+                    <p>Delivery Time: 20-30 mins</p>
+                    <button class="view-foods">View Menu</button>
+                    <div class="food-list hidden">
+                        <div class="food-item">
+                            <img src="https://via.placeholder.com/100" alt="Classic Burger">
+                            <div class="food-details">
+                                <h4>Classic Burger</h4>
+                                <p>Price: $8.00</p>
+                                <p>Orders: <span class="order-count" data-food-id="5">0</span></p>
+                                <p>Rating: <span class="rating" data-food-id="5">4.3</span> ★</p>
+                                <button class="add-to-cart" data-food-id="5">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="cart">
-            <h2>Cart</h2>
-            <ul id="cartItems"></ul>
-            <p>Total: ₹<span id="totalPrice">0</span></p>
-            <button onclick="checkout()">Checkout</button>
+        <!-- Cart Section -->
+        <section class="cart">
+            <h2>Your Cart</h2>
+            <ul id="cart-items">
+                <!-- Cart items will be added here dynamically -->
+            </ul>
+            <p>Total: $<span id="total-price">0.00</span></p>
         </section>
-
-        <div id="orderConfirmation" class="hidden">
-            <img src="order-placed.jpg" alt="Order Placed">
-            <h2>Your order has been placed successfully!</h2>
-            <button onclick="confirmOrder()">Confirm</button>
-        </div>
     </main>
 
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
-
 </html>
