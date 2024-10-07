@@ -93,3 +93,25 @@ button.add-to-cart:hover, button.view-foods:hover {
 .hidden {
     display: none;
 }
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.cart-item-details h3 {
+    margin: 0 0 5px;
+}
+
+.cart-item-details p {
+    margin: 2px 0;
+}
