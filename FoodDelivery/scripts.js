@@ -1,5 +1,18 @@
 // Data for restaurants and food items
 const foodData = [
+    { id: 1, name: 'Margherita Pizza', price: 320.00, orders: 0, rating: 4.5, restaurant: ' Dominos Pizza ' },
+    { id: 2, name: 'Chicken Pizza', price: 370.00, orders: 0, rating: 4.2, restaurant: 'Dominos Pizza ' },
+    { id: 3, name: 'Veggie Fiesta', price: 190.00, orders: 0, rating: 4.2, restaurant: 'Dominos Pizza ' },
+    { id: 4, name: 'Salmon Sushi', price: 10.00, orders: 0, rating: 4.7, restaurant: 'Sushi World' },
+    { id: 4, name: 'Tuna Sushi', price: 12.00, orders: 0, rating: 4.6, restaurant: 'Sushi World' },
+    { id: 5, name: 'Classic Burger', price: 8.00, orders: 0, rating: 4.3, restaurant: 'Burger Town' },
+    { id: 6, name: 'Cheese Burger', price: 9.00, orders: 0, rating: 4.5, restaurant: 'Burger Town' },
+    { id: 1, name: 'Margherita Pizza', price: 12.00, orders: 0, rating: 4.5, restaurant: 'Pizza Palace' },
+    { id: 2, name: 'Pepperoni Pizza', price: 15.00, orders: 0, rating: 4.2, restaurant: 'Pizza Palace' },
+    { id: 3, name: 'Salmon Sushi', price: 10.00, orders: 0, rating: 4.7, restaurant: 'Sushi World' },
+    { id: 4, name: 'Tuna Sushi', price: 12.00, orders: 0, rating: 4.6, restaurant: 'Sushi World' },
+    { id: 5, name: 'Classic Burger', price: 8.00, orders: 0, rating: 4.3, restaurant: 'Burger Town' },
+    { id: 6, name: 'Cheese Burger', price: 9.00, orders: 0, rating: 4.5, restaurant: 'Burger Town' },
     { id: 1, name: 'Margherita Pizza', price: 12.00, orders: 0, rating: 4.5, restaurant: 'Pizza Palace' },
     { id: 2, name: 'Pepperoni Pizza', price: 15.00, orders: 0, rating: 4.2, restaurant: 'Pizza Palace' },
     { id: 3, name: 'Salmon Sushi', price: 10.00, orders: 0, rating: 4.7, restaurant: 'Sushi World' },
