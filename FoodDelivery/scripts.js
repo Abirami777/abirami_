@@ -41,7 +41,14 @@ document.querySelectorAll('.add-to-cart').forEach(button => {
 
 // Add items to the cart and save to localStorage
 function addToCart(food) {
-    cartItems.push(food);
+    const existingItem = cartItems.find(item => item.id === food.id);
+
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cartItems.push({ ...food, quantity: 1 });
+    }
+
     localStorage.setItem('cartItems', JSON.stringify(cartItems));  // Save the cart items in local storage
     updateCartUI();
     calculateTotal();
