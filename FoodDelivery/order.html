@@ -22,22 +22,23 @@
             <h2>Delivery Information</h2>
             <form id="order-form">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+                <input type="text" id="name" name="name" required></br>
+            
 
                 <label for="contact">Contact Number:</label>
-                <input type="tel" id="contact" name="contact" required>
+                <input type="tel" id="contact" name="contact" required></br>
 
                 <label for="address">Delivery Address:</label>
-                <textarea id="address" name="address" required></textarea>
+                <textarea id="address" name="address" required></textarea></br>
 
                 <label for="payment">Payment Method:</label>
                 <select id="payment" name="payment" required>
                     <option value="credit">Credit Card</option>
                     <option value="debit">Debit Card</option>
                     <option value="cash">Cash on Delivery</option>
-                </select>
+                </select></br>
 
-                <p>Total Bill: $<span id="total-bill">0.00</span></p>
+                <p>Total Bill: $<span id="total-bill">0.00</span></p></br>
 
                 <button type="submit">Place Order</button>
             </form>
