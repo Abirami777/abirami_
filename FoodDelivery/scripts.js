@@ -1,6 +1,6 @@
 // Data for restaurants and food items
 const foodData = [
-    { id: 1, name: 'Margherita Pizza', image="https://th.bing.com/th/id/OIP.aUrNLbf-dtMfuY2kGU3qsQHaFF?w=298&h=205&c=7&r=0&o=5&dpr=1.2&pid=1.7",price: 320.00, orders: 0, rating: 4.5, restaurant: ' Dominos Pizza ' },
+    { id: 1, name: 'Margherita Pizza', image='https://th.bing.com/th/id/OIP.aUrNLbf-dtMfuY2kGU3qsQHaFF?w=298&h=205&c=7&r=0&o=5&dpr=1.2&pid=1.7',price: 320.00, orders: 0, rating: 4.5, restaurant: ' Dominos Pizza ' },
     { id: 2, name: 'Chicken Pizza', image="https://th.bing.com/th/id/OIP.erUtJTDiOh-z8A3d9XbIZgHaFF?w=270&h=186&c=7&r=0&o=5&dpr=1.2&pid=1.7",price: 370.00, orders: 0, rating: 4.2, restaurant: 'Dominos Pizza ' },
     { id: 3, name: 'Veggie Fiesta',image="https://th.bing.com/th/id/OIP.3LpHfN8ShZck6d5b5c9SJwHaFF?w=240&h=180&c=7&r=0&o=5&dpr=1.2&pid=1.7", price: 190.00, orders: 0, rating: 4.2, restaurant: 'Dominos Pizza ' },
     { id: 4, name: 'Tangri Kebab',image="https://th.bing.com/th/id/OIP.wCyAC7b_bSXeLXRyfsckbwAAAA?w=245&h=180&c=7&r=0&o=5&dpr=1.2&pid=1.7", price: 820.00, orders: 0, rating: 4.7, restaurant: 'Kebab Factory' },
