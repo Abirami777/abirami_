@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Delivery</title>
+    <title>Food Flight</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,14 +20,15 @@
     <!-- Main Content -->
     <main>
         <section class="restaurants">
-            <h2>Available Restaurants</h2>
+            <h2>Top Restaurants for you!!!</h2>
             <div class="restaurant-list">
                 <!-- Restaurant Items -->
                 <div class="restaurant-container">
-                    <h3 class="restaurant-name">Pizza Palace</h3>
-                    <p>Location: 123 Main St, City</p>
-                    <p>Cuisine: Italian, Pizza</p>
-                    <p>Delivery Time: 30-40 mins</p>
+                    <h3 class="restaurant-name">Domino's Pizza</h3>
+                    
+                    <p>Italian, Pizza</p>
+                    <p>Egmore</p>
+                    <p>30-40 mins</p>
                     <button class="view-foods">View Menu</button>
                     <div class="food-list hidden">
                         <div class="food-item">
@@ -44,17 +45,33 @@
                 </div>
 
                 <div class="restaurant-container">
-                    <h3 class="restaurant-name">Sushi World</h3>
-                    <p>Location: 456 Sushi Ave, City</p>
-                    <p>Cuisine: Japanese, Sushi</p>
-                    <p>Delivery Time: 25-35 mins</p>
+                    <h3 class="restaurant-name">KEBAB FACTORY</h3>
+                    <p>North Indian,Kebab</p>
+                    <p>Sowkarpet</p>
+                    <p> 25-35 mins</p>
                     <button class="view-foods">View Menu</button>
                     <div class="food-list hidden">
                         <div class="food-item">
                             <img src="https://via.placeholder.com/100" alt="Salmon Sushi">
                             <div class="food-details">
-                                <h4>Salmon Sushi</h4>
-                                <p>Price: $10.00</p>
+                                <h4>Tangri kebab</h4>
+                                <p>Price: ₹820</p>
+                                <p>Orders: <span class="order-count" data-food-id="3">0</span></p>
+                                <p>Rating: <span class="rating" data-food-id="3">4.7</span> ★</p>
+                                <button class="add-to-cart" data-food-id="3">Add to Cart</button>
+                            </div>
+                              <img src="https://via.placeholder.com/100" alt="Salmon Sushi">
+                            <div class="food-details">
+                                <h4>Seekh kebab</h4>
+                                <p>Price: ₹870</p>
+                                <p>Orders: <span class="order-count" data-food-id="3">0</span></p>
+                                <p>Rating: <span class="rating" data-food-id="3">4.7</span> ★</p>
+                                <button class="add-to-cart" data-food-id="3">Add to Cart</button>
+                            </div>
+                              <img src="https://via.placeholder.com/100" alt="Salmon Sushi">
+                            <div class="food-details">
+                                <h4>Galouti kebab</h4>
+                                <p>Price: ₹930</p>
                                 <p>Orders: <span class="order-count" data-food-id="3">0</span></p>
                                 <p>Rating: <span class="rating" data-food-id="3">4.7</span> ★</p>
                                 <button class="add-to-cart" data-food-id="3">Add to Cart</button>
@@ -64,20 +81,58 @@
                 </div>
 
                 <div class="restaurant-container">
-                    <h3 class="restaurant-name">Burger Town</h3>
-                    <p>Location: 789 Burger Blvd, City</p>
-                    <p>Cuisine: American, Burgers</p>
-                    <p>Delivery Time: 20-30 mins</p>
+                    <h3 class="restaurant-name">BURGER KING</h3>
+                    <p> American, Burgers</p>
+                    <p>Nungambakkam</p>
+                    <p>20-30 mins</p>
                     <button class="view-foods">View Menu</button>
                     <div class="food-list hidden">
                         <div class="food-item">
                             <img src="https://via.placeholder.com/100" alt="Classic Burger">
                             <div class="food-details">
-                                <h4>Classic Burger</h4>
-                                <p>Price: $8.00</p>
+                                <h4>Crispy Veg Burger</h4>
+                                <p>Price: ₹80.00</p>
                                 <p>Orders: <span class="order-count" data-food-id="5">0</span></p>
                                 <p>Rating: <span class="rating" data-food-id="5">4.3</span> ★</p>
                                 <button class="add-to-cart" data-food-id="5">Add to Cart</button>
+                            </div>
+                            <img src="https://via.placeholder.com/100" alt="Classic Burger">
+                            <div class="food-details">
+                                <h4>Crispy Chicken  Burger</h4>
+                                <p>Price: ₹180.00</p>
+                                <p>Orders: <span class="order-count" data-food-id="5">0</span></p>
+                                <p>Rating: <span class="rating" data-food-id="5">4.3</span> ★</p>
+                                <button class="add-to-cart" data-food-id="5">Add to Cart</button>
+                            </div>
+                            <img src="https://via.placeholder.com/100" alt="Classic Burger">
+                            <div class="food-details">
+                                <h4>Cheese Chicken Burger</h4>
+                                <p>Price: ₹210.00</p>
+                                <p>Orders: <span class="order-count" data-food-id="5">0</span></p>
+                                <p>Rating: <span class="rating" data-food-id="5">4.3</span> ★</p>
+                                <button class="add-to-cart" data-food-id="5">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="restaurant-list">
+                <!-- Restaurant Items -->
+                <div class="restaurant-container">
+                    <h3 class="restaurant-name">A2B</h3>
+                    
+                    <p>SouthIndian,Tiffin, Meals</p>
+                    <p>OMR Navalur</p>
+                    <p>30-40 mins</p>
+                    <button class="view-foods">View Menu</button>
+                    <div class="food-list hidden">
+                        <div class="food-item">
+                            <img src="https://via.placeholder.com/100" alt="Margherita Pizza">
+                            <div class="food-details">
+                                <h4>Mini Tiffin</h4>
+                                <p>Price: ₹120.00</p>
+                                <p>Orders: <span class="order-count" data-food-id="1">0</span></p>
+                                <p>Rating: <span class="rating" data-food-id="1">4.5</span> ★</p>
+                                <button class="add-to-cart" data-food-id="1">Add to Cart</button>
                             </div>
                         </div>
                     </div>
