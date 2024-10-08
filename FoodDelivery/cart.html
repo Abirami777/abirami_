@@ -31,7 +31,7 @@
 
     <script>
         // Get cart items from localStorage or an empty array if none
-        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         let totalPrice = 0;
 
         // Function to update cart UI
@@ -49,6 +49,11 @@
                             <p>Price: $${item.price.toFixed(2)}</p>
                             <p>Restaurant: ${item.restaurant}</p>
                             <p>Rating: ${item.rating} stars</p>
+                            <div class="quantity-controls">
+                                <button class="decrement" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="increment" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -60,8 +65,22 @@
 
         // Function to calculate total price
         function calculateTotal() {
-            totalPrice = cartItems.reduce((total, item) => total + item.price, 0);
+            totalPrice = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
             document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+        }
+
+        // Function to update quantity of items
+        function updateQuantity(foodId, change) {
+            cartItems = cartItems.map(item => {
+                if (item.id === foodId) {
+                    item.quantity = Math.max(1, item.quantity + change); // Ensure quantity is at least 1
+                }
+                return item;
+            });
+
+            // Save updated cart items to localStorage and update the UI
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartUI();
         }
 
         // Function to proceed to checkout
