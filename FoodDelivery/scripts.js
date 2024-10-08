@@ -3,22 +3,19 @@ const foodData = [
     { id: 1, name: 'Margherita Pizza', price: 320.00, orders: 0, rating: 4.5, restaurant: ' Dominos Pizza ' },
     { id: 2, name: 'Chicken Pizza', price: 370.00, orders: 0, rating: 4.2, restaurant: 'Dominos Pizza ' },
     { id: 3, name: 'Veggie Fiesta', price: 190.00, orders: 0, rating: 4.2, restaurant: 'Dominos Pizza ' },
-    { id: 4, name: 'Salmon Sushi', price: 10.00, orders: 0, rating: 4.7, restaurant: 'Sushi World' },
-    { id: 4, name: 'Tuna Sushi', price: 12.00, orders: 0, rating: 4.6, restaurant: 'Sushi World' },
-    { id: 5, name: 'Classic Burger', price: 8.00, orders: 0, rating: 4.3, restaurant: 'Burger Town' },
-    { id: 6, name: 'Cheese Burger', price: 9.00, orders: 0, rating: 4.5, restaurant: 'Burger Town' },
-    { id: 1, name: 'Margherita Pizza', price: 12.00, orders: 0, rating: 4.5, restaurant: 'Pizza Palace' },
-    { id: 2, name: 'Pepperoni Pizza', price: 15.00, orders: 0, rating: 4.2, restaurant: 'Pizza Palace' },
-    { id: 3, name: 'Salmon Sushi', price: 10.00, orders: 0, rating: 4.7, restaurant: 'Sushi World' },
-    { id: 4, name: 'Tuna Sushi', price: 12.00, orders: 0, rating: 4.6, restaurant: 'Sushi World' },
-    { id: 5, name: 'Classic Burger', price: 8.00, orders: 0, rating: 4.3, restaurant: 'Burger Town' },
-    { id: 6, name: 'Cheese Burger', price: 9.00, orders: 0, rating: 4.5, restaurant: 'Burger Town' },
-    { id: 1, name: 'Margherita Pizza', price: 12.00, orders: 0, rating: 4.5, restaurant: 'Pizza Palace' },
-    { id: 2, name: 'Pepperoni Pizza', price: 15.00, orders: 0, rating: 4.2, restaurant: 'Pizza Palace' },
-    { id: 3, name: 'Salmon Sushi', price: 10.00, orders: 0, rating: 4.7, restaurant: 'Sushi World' },
-    { id: 4, name: 'Tuna Sushi', price: 12.00, orders: 0, rating: 4.6, restaurant: 'Sushi World' },
-    { id: 5, name: 'Classic Burger', price: 8.00, orders: 0, rating: 4.3, restaurant: 'Burger Town' },
-    { id: 6, name: 'Cheese Burger', price: 9.00, orders: 0, rating: 4.5, restaurant: 'Burger Town' }
+    { id: 4, name: 'Tangri Kebab', price: 820.00, orders: 0, rating: 4.7, restaurant: 'Kebab Factory' },
+    { id: 5, name: 'Seekh Kebab', price: 870.00, orders: 0, rating: 4.6, restaurant: 'Kebab Factory' },
+    { id: 6, name: 'Galouti Kebab', price: 930.00, orders: 0, rating: 4.3, restaurant: 'Kebab Factory' },
+    { id: 7, name: 'Crispy Veg Burger', price: 80.00, orders: 0, rating: 4.5, restaurant: 'Burger King'},
+    { id: 8, name: 'Crispy Chicken Burger', price: 180.00, orders: 0, rating: 4.5, restaurant: 'Burger King' },
+    { id: 9, name: 'Cheese Chicken Burger', price: 210.00, orders: 0, rating: 4.2, restaurant: 'Burger King' },
+    { id: 10, name: 'Mini Tiffin', price: 120.00, orders: 0, rating: 4.7, restaurant: 'A2B' },
+    { id: 11, name: 'Ghee Roast', price: 120.00, orders: 0, rating: 4.6, restaurant:  'A2B' },
+    { id: 12, name: 'Veg Meals', price: 220.00, orders: 0, rating: 4.3, restaurant: 'A2B' },
+    { id: 13, name: 'Chettinad Chicken Biriyani', price: 260.00, orders: 0, rating: 4.5, restaurant:'Banana Leaf' },
+    { id: 14, name: 'Ghee Roast Chicken Curry', price: 320.00, orders: 0, rating: 4.5, restaurant: 'Banana Leaf'},
+    { id: 15, name: 'Fish Fry', price: 250.00, orders: 0, rating: 4.2, restaurant: 'Banana Leaf'}
+   
 ];
 // Assuming your cart logic is already in place, now let's save the cart total for the order page.
 const cartItems = [];
