@@ -24,7 +24,7 @@
             <ul id="cart-items">
                 <!-- Cart items will be added here dynamically via JS -->
             </ul>
-            <p>Total: $<span id="total-price">0.00</span></p>
+            <p>Total: ₹<span id="total-price">0.00</span></p>
             <button id="checkout-btn" onclick="proceedToCheckout()">Proceed to Checkout</button>
         </section>
     </main>
@@ -46,7 +46,7 @@
                         <img src="${item.image}" alt="${item.name}" class="cart-item-image">
                         <div class="cart-item-details">
                             <h3>${item.name}</h3>
-                            <p>Price: $${item.price.toFixed(2)}</p>
+                            <p>Price: ₹${item.price.toFixed(2)}</p>
                             <p>Restaurant: ${item.restaurant}</p>
                             <p>Rating: ${item.rating} stars</p>
                             <div class="quantity-controls">
