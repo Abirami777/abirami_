@@ -39,6 +39,11 @@
             const cartItemsContainer = document.getElementById('cart-items');
             cartItemsContainer.innerHTML = ''; // Clear existing items
 
+            if (cartItems.length === 0) {
+                cartItemsContainer.innerHTML = '<li>Your cart is empty.</li>';
+                return;
+            }
+
             cartItems.forEach(item => {
                 const li = document.createElement('li');
                 li.innerHTML = `
@@ -54,6 +59,7 @@
                                 <span class="quantity">${item.quantity}</span>
                                 <button class="increment" onclick="updateQuantity(${item.id}, 1)">+</button>
                             </div>
+                            <button class="remove" onclick="removeItem(${item.id})">Remove</button>
                         </div>
                     </div>
                 `;
@@ -83,8 +89,20 @@
             updateCartUI();
         }
 
+        // Function to remove item from cart
+        function removeItem(foodId) {
+            cartItems = cartItems.filter(item => item.id !== foodId);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartUI();
+            alert('Item removed from cart.');
+        }
+
         // Function to proceed to checkout
         function proceedToCheckout() {
+            if (cartItems.length === 0) {
+                alert('Your cart is empty! Add items to proceed to checkout.');
+                return;
+            }
             localStorage.setItem('totalPrice', totalPrice.toFixed(2));  // Save total to local storage
             window.location.href = "order.html";  // Redirect to order page
         }
