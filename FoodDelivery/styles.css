@@ -142,7 +142,7 @@ button:hover {
 
 .remove {
     background-color: #f44336; /* Red */
-    margin-top: 10px;
+    margin-left: 5px;
 }
 
 .remove:hover {
