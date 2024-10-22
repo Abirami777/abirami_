@@ -49,8 +49,9 @@ main {
     margin: 0;
     cursor: pointer;
     color: black;
-    background-position: right top;
+    background-position: left top;
     margin-right: 200px;
+    background-repeat: no-repeat;
 }
 
 .food-item {
