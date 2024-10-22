@@ -52,10 +52,7 @@ main {
     background-position: left top;
     margin-left: 200px;
     background-repeat: no-repeat;
-    display:block;
-    width:200px;
-    height:200px;
-    object-fit:cover;
+  
 }
 
 .food-item {
