@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Products</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Buy Products</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="sell.html">Sell a Product</a>
+            <a href="buy.html">Buy Products</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Available Products</h2>
+        <div id="product-list"></div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Classified Marketplace. All rights reserved.</p>
+    </footer>
+    <script>
+        // Function to display products from localStorage
+        function displayProducts() {
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '';
+
+            // Check if products exist
+            if (products.length === 0) {
+                productList.innerHTML = '<p>No products available.</p>';
+                return;
+            }
+
+            products.forEach((product, index) => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product'; // Add a class for styling
+                productDiv.innerHTML = `
+                    <img src="${product.image || 'placeholder.jpg'}" alt="${product.name}" class="product-image">
+                    <h3>${product.name}</h3>
+                    <p>Price: ₹${product.price.toFixed(2)}</p>
+                    <p>${product.description}</p>
+                    <button onclick="addToCart(${index})">Add to Cart</button>
+                `;
+                productList.appendChild(productDiv);
+            });
+        }
+
+        function addToCart(index) {
+            const products = JSON.parse(localStorage.getItem('products'));
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+            if (!products[index]) {
+                alert('Product not found!');
+                return;
+            }
+
+            const product = { ...products[index], quantity: 1 };
+            cartItems.push(product);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            alert('Product added to cart!');
+        }
+
+        displayProducts(); // Call the function to display products on page load
+    </script>
+</body>
+</html>

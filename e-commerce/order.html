@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Order Confirmation</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="sell.html">Sell a Product</a>
+            <a href="buy.html">Buy Products</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+    </header>
+    <main>
+        <h2>Thank You for Your Order!</h2>
+        <p>Your order has been successfully placed.</p>
+        <p>Your total amount is: ₹<span id="final-price">0.00</span></p>
+        
+        <h3>Delivery Details</h3>
+        <div id="delivery-details">
+            <!-- Delivery details will be displayed here -->
+        </div>
+
+        <button onclick="goHome()">Return to Home</button>
+    </main>
+    <footer>
+        <p>&copy; 2024 Classified Marketplace. All rights reserved.</p>
+    </footer>
+    <script>
+        // Get the total price from localStorage
+        const totalPrice = localStorage.getItem('totalPrice') || '0.00';
+        document.getElementById('final-price').textContent = totalPrice;
+
+        // Get delivery details from localStorage
+        const deliveryDetails = JSON.parse(localStorage.getItem('deliveryDetails')) || {};
+        if (Object.keys(deliveryDetails).length) {
+            document.getElementById('delivery-details').innerHTML = `
+                <p>Name: ${deliveryDetails.name}</p>
+                <p>Address: ${deliveryDetails.address}</p>
+                <p>Contact: ${deliveryDetails.contact}</p>
+            `;
+        } else {
+            document.getElementById('delivery-details').innerHTML = '<p>No delivery details provided.</p>';
+        }
+
+        // Clear the cart and total price after order confirmation
+        localStorage.removeItem('cartItems');
+        localStorage.removeItem('totalPrice');
+        localStorage.removeItem('deliveryDetails'); // Clear delivery details
+
+        function goHome() {
+            window.location.href = "index.html"; // Redirect to home page
+        }
+    </script>
+</body>
+</html>
