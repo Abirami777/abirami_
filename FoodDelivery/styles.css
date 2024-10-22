@@ -49,12 +49,18 @@ main {
     margin: 0;
     cursor: pointer;
     color: black;
-    background-position: left top;
     margin-left: 200px;
-    background-repeat: no-repeat;
+    font-weight:bold;
   
 }
-
+.restaurant-details background-image{
+    display:block;
+    width:500px;
+    height:500px;
+    object-fit:cover;
+    background-position: left top;
+    background-repeat: no-repeat;
+}
 .food-item {
     display: flex;
     align-items: center;
