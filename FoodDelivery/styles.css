@@ -45,6 +45,11 @@ main {
     cursor: pointer;
     color: black;
 }
+.restaurant-details{
+    margin: 0;
+    cursor: pointer;
+    color: black;
+}
 
 .food-item {
     display: flex;
